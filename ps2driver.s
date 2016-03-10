@@ -7,6 +7,7 @@ MOV N_[1] INTO CHIP_SELECT
 
 #Check for ready signal - if not given, note this and return.
 #If given, note this and continue
+
 OR STATUS_BUS N_[0b0010] INTO PS2_DRIVER.GotKey
 LOD PS2_DRIVER.GotKey
 JMP PS2_DRIVER.Exit
@@ -20,6 +21,8 @@ MOV N_[0b0000] INTO STATUS_BUS
 MOV N_[0b1000] INTO STATUS_BUS
 MOV DATA_BUS INTO PS2_DRIVER.Keystroke[1]
 MOV N_[0b0000] INTO STATUS_BUS
+
+#Return
 
 LOD N_[0]
 PS2_DRIVER.Exit:
