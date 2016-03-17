@@ -8,7 +8,7 @@ MOV CS_KEYBOARD INTO CHIP_SELECT
 #Check for ready signal - if not given, note this and return.
 #If given, note this and continue
 
-OR STATUS_BUS N_[0b0010] INTO PS2_DRIVER.GotKey
+AND STATUS_BUS N_[0b0010] INTO PS2_DRIVER.GotKey
 LOD PS2_DRIVER.GotKey
 JMP PS2_DRIVER.Done
 
