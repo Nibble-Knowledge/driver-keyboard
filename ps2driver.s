@@ -2,7 +2,7 @@
 
 PS2_DRIVER.Enter:
 
-#Change when final chip select assignments made
+MOV N_[0b0000] INTO STATUS_BUS
 MOV CS_KEYBOARD INTO CHIP_SELECT
 
 #Check for ready signal - if not given, note this and return.
