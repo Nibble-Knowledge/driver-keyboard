@@ -12,11 +12,27 @@ AND STATUS_BUS N_[0b0010] INTO PS2_DRIVER.GotKey
 LOD PS2_DRIVER.GotKey
 JMP PS2_DRIVER.Done
 
+
+PS2_DRIVER.Spin:
+#Stall for time - this was added to troubleshoot
+INC8 PS2_DRIVER.SpinVar
+JMPNE8 PS2_DRIVER.SpinVar PS2_DRIVER.SpinTest TO PS2_DRIVER.Spin
+
 #If a key was found, read it.
 
 MOV N_[0b1000] INTO STATUS_BUS
 MOV DATA_BUS INTO PS2_DRIVER.Keystroke[0]
 MOV N_[0b0000] INTO STATUS_BUS
+
+#Stall again
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
 
 MOV N_[0b1000] INTO STATUS_BUS
 MOV DATA_BUS INTO PS2_DRIVER.Keystroke[1]
@@ -34,3 +50,6 @@ JMP 0x0000
 
 PS2_DRIVER.GotKey:		.data 1
 PS2_DRIVER.Keystroke:	.data 2
+
+PS2_DRIVER.SpinVar:		.data 2 0x00
+PS2_DRIVER.SpinTest:	.data 2 0x00
