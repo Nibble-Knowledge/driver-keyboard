@@ -12,9 +12,8 @@ AND STATUS_BUS N_[0b0010] INTO PS2_DRIVER.GotKey
 LOD PS2_DRIVER.GotKey
 JMP PS2_DRIVER.Done
 
-
-PS2_DRIVER.Spin:
 #Stall for time - this was added to troubleshoot
+PS2_DRIVER.Spin:
 INC8 PS2_DRIVER.SpinVar
 JMPNE8 PS2_DRIVER.SpinVar PS2_DRIVER.SpinTest TO PS2_DRIVER.Spin
 
